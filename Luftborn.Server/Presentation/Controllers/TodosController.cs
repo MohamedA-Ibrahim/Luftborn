@@ -20,6 +20,13 @@ public class TodosController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllTodos(CancellationToken cancellation)
+    {
+        var todos = await _mediator.Send(new GetTodosQuery(), cancellation);
+        return Ok(todos);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TodoDto>> GetTodo(Guid id)
     {
