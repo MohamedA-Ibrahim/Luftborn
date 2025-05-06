@@ -31,4 +31,11 @@ public class TodosController : ControllerBase
         return Ok(todo);
     }
 
+    [HttpPost]
+    public async Task<ActionResult<TodoDto>> CreateTodo(CreateTodoCommand command)
+    {
+        var todo = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetTodo), new { id = todo.Id }, todo);
+    }
+
 } 
