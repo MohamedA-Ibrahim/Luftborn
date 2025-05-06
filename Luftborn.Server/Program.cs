@@ -1,5 +1,6 @@
 using Luftborn.Server.Core.Application;
 using Luftborn.Server.Infrastructure;
+using Luftborn.Server.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

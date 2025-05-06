@@ -1,5 +1,6 @@
 using Luftborn.Server.Core.Application.Common.Interfaces;
 using Luftborn.Server.Core.Domain.Common;
+using Luftborn.Server.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -11,6 +12,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         : base(options)
     {
     }
+
+    public DbSet<Todo> Todos => Set<Todo>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
