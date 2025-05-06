@@ -38,6 +38,18 @@ public class TodosController : ControllerBase
         return CreatedAtAction(nameof(GetTodo), new { id = todo.Id }, todo);
     }
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TodoDto>> UpdateTodo([FromRoute]Guid id, [FromBody] UpdateTodoCommand command)
+    {
+        command.Id = id;
+
+        var todo = await _mediator.Send(command);
+        if(todo == null)
+            return NotFound();
+
+        return Ok(todo);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTodo([FromRoute]Guid id)
     {
