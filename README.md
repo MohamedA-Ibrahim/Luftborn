@@ -1,6 +1,6 @@
 # Luftborn.Server
 
-A modern .NET 8 web application with a Clean Architecture design pattern, serving as a backend API for the Luftborn application.
+A modern .NET 8 web application with a Clean Architecture design pattern, serving as a backend API for the application.
 
 ## Architecture
 
@@ -37,7 +37,7 @@ The project follows Clean Architecture principles with the following structure:
 
 1. Clone the repository:
    ```
-   git clone [repository-url]
+   git clone https://github.com/MohamedA-Ibrahim/Luftborn
    cd Luftborn
    ```
 
@@ -59,24 +59,7 @@ The project follows Clean Architecture principles with the following structure:
    ```
    This will start both the server and client applications using the SPA proxy.
 
-## Database Migrations
+### Demo
 
-The application uses Entity Framework Core migrations to manage the database schema:
-
-```
-cd Luftborn.Server
-dotnet ef database update
-```
-
-To create a new migration:
-
-```
-dotnet ef migrations add [MigrationName]
-```
-
-## Project Structure
-
-- `Core/Domain`: Contains entities like Todo
-- `Core/Application`: Contains interfaces, CQRS commands/queries
-- `Infrastructure/Persistence`: Database context and repositories
-- `Presentation/Controllers`: API controllers 
+You can find a demo for the application deployed here:
+https://luftborn.azurewebsites.net/
