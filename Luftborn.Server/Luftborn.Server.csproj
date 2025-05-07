@@ -7,6 +7,7 @@
     <SpaRoot>..\luftborn.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:53385</SpaProxyServerUrl>
+	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +34,21 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\" />
     <Folder Include="Presentation\Controllers\" />
   </ItemGroup>
 
+
+	<Target Name="CopyClientToWwwroot" AfterTargets="Publish">
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+		<ItemGroup>
+			<!-- Collect all files recursively from dist -->
+			<ClientDistFiles Include="$(SpaRoot)\dist\**\*" />
+		</ItemGroup>
+
+		<!-- Copy all files to the destination folder while preserving structure -->
+		<Copy SourceFiles="@(ClientDistFiles)" DestinationFiles="@(ClientDistFiles->'$(PublishDir)/wwwroot/%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
+	
 </Project>
